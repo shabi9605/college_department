@@ -1,0 +1,111 @@
+{% extends 'dashboard/index.html' %}
+{% block content %}
+<br>
+			<div id="page-wrapper">
+				<div class="graphs">
+					<h3 class="blank1">Student Details Table</h3>
+					
+                    <div>
+                        <h1>Search</h1>
+                        <form action="{% url 'view_student_details' %}" method="GET">
+                            {% csrf_token %}
+                            <input type="text" name="name" placeholder="semester">
+                            <input type="submit" value="search">
+                        </form>
+                      
+                    </div>
+
+                    
+                    <div>
+
+                    </div>
+
+					 <div class="xs tabls">
+						<div class="bs-example4" data-example-id="contextual-table">
+						<table class="table">
+						  <thead>
+							<tr>
+							  <th>#</th>
+							  
+							 
+							  <th>Student</th>
+							  <th>Email</th>
+							  <th>Aadhar</th>
+							  <th>House Name</th>
+							  <th>Place</th>
+                              <th>Semester</th>
+							  <th>Land Mark</th>
+							  <th>District</th>
+							  <th>Pincode</th>
+                              <th>Mobile No</th>
+							 
+							 
+							 
+							 
+							</tr>
+						  </thead>
+						  <tbody>
+                             
+                            {% if student %}
+
+                              {% for list in student %}
+							<tr class="active">
+							<td class="serial">{{ forloop.counter }}</td> 
+							
+							  <td>{{list.name}}</td>
+							  <td>{{list.email}}</td>
+							  <td>{{list.adhar_no}}</td>
+							  <td>{{list.house_name}}</td>
+                              
+							  <td>{{list.place}}</td>
+                              <td>{{list.semster}}</td>
+							  <td>{{list.landmark}}</td>
+							  <td>{{list.district}}</td>
+							  <td>{{list.pincode}}</td>
+                              <td>{{list.mobile_no}}</td>
+							  
+							  
+                               
+							</tr>
+                            {% endfor %}
+                            {% else %}
+
+                             
+							
+                            {% for list in student_details %}
+							<tr class="active">
+                                <td class="serial">{{ forloop.counter }}</td> 
+                                
+                                  <td>{{list.name}}</td>
+                                  <td>{{list.email}}</td>
+                                  <td>{{list.adhar_no}}</td>
+                                  <td>{{list.house_name}}</td>
+                                  
+                                  <td>{{list.place}}</td>
+                                  <td>{{list.semster}}</td>
+                                  <td>{{list.landmark}}</td>
+                                  <td>{{list.district}}</td>
+                                  <td>{{list.pincode}}</td>
+                                  <td>{{list.mobile_no}}</td>
+                                  
+                                  
+                                   
+                                </tr>
+                               
+                            {% endfor %}
+                            {% endif %}
+                          
+							
+						  </tbody>
+						</table>
+					   </div>
+					   
+						</div><!-- /.table-responsive -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		{% endblock %}

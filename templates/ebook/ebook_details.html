@@ -1,0 +1,67 @@
+{% extends 'dashboard/index.html' %}
+{% block content %}
+<br>
+			<div id="page-wrapper">
+				<div class="graphs">
+					<h3 class="blank1">Data Table</h3>
+					<form action="{% url 'search_ebook' %}" method="get" style="margin:auto;max-width:800px">
+						{% csrf_token %}
+						<!-- <h2 class="weh2"> -->
+						<input type="search" placeholder="Enter Book/author name " name="query" id='search-text-input' style="width: 33em;">
+						<button sty><i class="fa fa-search" aria-hidden="true"></i></button>
+						<!-- <input type="submit" value="search"> -->
+					</form>		<br>
+					 <div class="xs tabls">
+						<div class="bs-example4" data-example-id="contextual-table">
+						<table class="table">
+						  <thead>
+							<tr>
+							  <th>#</th>
+							  
+							 
+							  <th>Book Name</th>
+							  <th>Author</th>
+							  <th>Book</th>
+							  <th>Link</th>
+							  <th>Created date</th>
+							  <th>Updated date</th>
+							  {% if user.nonteaching_staff %}
+							  <th>Update</th>
+							  <th>Delete</th>
+							  {% endif %}
+							</tr>
+						  </thead>
+						  <tbody>
+							  {% if ebooks %}
+                            {% for list in ebooks %}
+							<tr class="active">
+							<td class="serial">{{ forloop.counter }}</td> 
+							
+							  <td>{{list.book_name}}</td>
+							  <td>{{list.author}}</td>
+							  <td><a href="{{list.book_file}}">Book</a></td>
+							  <td><a href=" {{list.link}}">Link</a></td>
+							  <td>{{list.created_date}}</td>
+							  <td>{{list.updated_date}}</td>
+							  {% if user.nonteaching_staff %}
+							  <td><a href="{% url 'update_ebook' list.id %}" style="color: red;">Update Details</a></td>
+                               <td><a href="{% url 'delete_ebook_details' list.id%}" style="color: red;" onclick="return confirm('are u sure d u want to delete this record')">Delete</a></td>
+							   {% endif %}
+							</tr>
+                            {% endfor %}
+							
+						  </tbody>
+						</table>
+					   </div>
+					   
+						</div><!-- /.table-responsive -->
+						</div>
+					</div>
+				</div>
+				{% else %}
+				<h2>No Data Found</h2>
+				{%endif %}
+			</div>
+		</div>
+		
+		{% endblock %}

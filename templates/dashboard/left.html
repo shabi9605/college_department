@@ -1,0 +1,453 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <head>
+        <title>Smart Department</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="Easy Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+        Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+         <!-- Bootstrap Core CSS -->
+        <link href="/static/dashboard/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <!-- Custom CSS -->
+        <link href="/static/dashboard/css/style.css" rel='stylesheet' type='text/css' />
+        <!-- Graph CSS -->
+        <link href="/static/dashboard/css/font-awesome.css" rel="stylesheet"> 
+        <!-- jQuery -->
+        <!-- lined-icons -->
+        <link rel="stylesheet" href="/static/dashboard/css/icon-font.min.css" type='text/css' />
+        <!-- //lined-icons -->
+        <!-- chart -->
+        <script src="/static/dashboard/js/Chart.js"></script>
+        <!-- //chart -->
+        <!--animate-->
+        <link href="/static/dashboard/css/animate.css" rel="stylesheet" type="text/css" media="all">
+        <script src="/static/dashboard/js/wow.min.js"></script>
+            <script>
+                 new WOW().init();
+            </script>
+        <!--//end-animate-->
+        <!----webfonts--->
+        <link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+        <!---//webfonts---> 
+         <!-- Meters graphs -->
+        <script src="/static/dashboard/js/jquery-1.10.2.min.js"></script>
+        <!-- Placed js at the end of the document so the pages load faster -->
+        
+        </head> 
+           
+         <body class="sticky-header left-side-collapsed"  onload="initMap()">
+            <section>
+            <!-- left side start-->
+                <div class="left-side sticky-left-side">
+        
+                    <!--logo and iconic logo start-->
+                    <div class="logo">
+                        <h1><a href="{% url 'dashboard' %}">SMART<span>DEPARTMENT</span></a></h1>
+                    </div>
+                    <div class="logo-icon text-center">
+                        <a href="{% url 'index' %}"><i class="lnr lnr-home"></i> </a>
+                    </div>
+  
+        
+                    <!--logo and iconic logo end-->
+                    <div class="left-side-inner">
+        
+                        <!--sidebar nav start-->
+                            <ul class="nav nav-pills nav-stacked custom-nav">
+                                <li class="active"><a href="{% url 'dashboard' %}"><i class="lnr lnr-power-switch"></i><span>Dashboard</span></a></li>
+                                
+                                {% if user.is_superuser %}
+                                <li class="active"><a href="{% url 'admin:index' %}"><i class="lnr lnr-power-switch"></i><span>Admin</span></a></li>
+
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-cog"></i>
+                                        <span>Registration</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'student_register' %}">Student</a> </li>
+                                            <li><a href="{% url 'teacher_register' %}">Teacher</a></li>
+                                            <li><a href="{% url 'staff_register' %}">Staff</a></li>
+                                            <li><a href="{% url 'parent_register' %}">Parent</a></li>
+                                        </ul>
+                                </li>
+
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Complaint Box</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'complaint_list' %}">Complaint</a> </li>
+                                        </ul>
+                                </li>
+                                
+                                <li class="menu-list"><a href="#"><i class="lnr lnr-book"></i>  <span>eBook</span></a> 
+                                    <ul class="sub-menu-list">
+                                        
+                                        <li><a href="{% url 'ebook_details' %}">Book Details</a></li>
+                                        
+                                    </ul>
+                                </li>
+                                <li class="menu-list"><a href="#"><i class="lnr lnr-book"></i>  <span>Chalans</span></a> 
+                                    <ul class="sub-menu-list">
+                                        
+                                        <li><a href="{% url 'chalan_view' %}">Chalan Details</a></li>
+                                        
+                                    </ul>
+                                </li>
+                                <li class="menu-list"><a href="#"><i class="lnr lnr-book"></i>  <span>Paid Application</span></a> 
+                                    <ul class="sub-menu-list">
+                                        
+                                        <li><a href="{% url 'view_paid_application' %}">View Application</a></li>
+                                        
+                                    </ul>
+                                </li>
+                                <li class="menu-list"><a href="#"><i class="lnr lnr-book"></i>  <span>Pre Academic details</span></a> 
+                                    <ul class="sub-menu-list">
+                                        
+                                        <li><a href="{% url 'view_pre_academic_details' %}">View details</a></li>
+                                        
+                                    </ul>
+                                </li>
+                                {% endif %}
+                                
+                                {% if user.teacher.job_type == 'HOD' %}
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Internal Mark</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'all_studnet' %}">Add</a> </li>    
+
+                                            <li><a href="{% url 'internal_details' %}">Details</a> </li>    
+                                            <li><a href="{% url 'view_all_attendance' %}">Attendance</a> </li>    
+                                        </ul>
+                                </li>
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Teachers</span></a>
+                                        <ul class="sub-menu-list">
+                                             
+
+                                            <li><a href="{% url 'all_teacher' %}">Details</a> </li>    
+                                        </ul>
+                                </li>
+
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Course</span></a>
+                                        <ul class="sub-menu-list">
+                                             
+
+                                            <li><a href="{% url 'view_all_course' %}">Details</a> </li>    
+                                        </ul>
+                                </li>
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Assignment</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'all_studnet1' %}">Add</a> </li>    
+
+                                            <li><a href="{% url 'assignment_details' %}">Details</a> </li>    
+                                        </ul>
+                                </li>
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Preacadamic Details</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'preacdamicapp_view' %}">Preacdamic List For Appruval</a> </li>    
+                                        </ul>
+                                </li>
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>TimeTable Details</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'table_details' %}">Timetable For Appruval</a> </li>    
+                                        </ul>
+                                </li>
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Notification Details</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'noti_details' %}">Notification For Appruval</a> </li>    
+                                        </ul>
+                                </li>
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Audio Video</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'addav' %}">Add</a> </li>    
+
+                                            <li><a href="{% url 'av_details' %}">Av Details</a> </li>    
+                                        </ul>
+                                </li>
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Complaint Box</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'complaint_list' %}">Complaint</a> </li>
+                                        </ul>
+                                </li>
+                                <li class="menu-list"><a href="#"><i class="lnr lnr-book"></i>  <span>eBook</span></a> 
+                                    <ul class="sub-menu-list">
+                                        <li><a href="{% url 'add_ebook' %}">Add Book</a> </li>
+                                        <li><a href="{% url 'ebook_details' %}">Book Details</a></li>
+                                        
+                                    </ul>
+                                </li>
+                                {% endif %}
+                                {% if user.teacher.job_type == 'teacher' %}
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Assignment</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'all_studnet1' %}">Add</a> </li>    
+
+                                            <li><a href="{% url 'assignment_details' %}">Details</a> </li>    
+                                            <li><a href="{% url 'view_submitted_assignments' %}">View Assignments</a> </li>    
+                                        </ul>
+                                </li>
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>TimeTable</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'aptablesteacher' %}">Time Table</a> </li>    
+                                        </ul>
+                                </li>
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Audio Video</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'addav' %}">Add</a> </li>    
+
+                                            <li><a href="{% url 'av_details' %}">Av Details</a> </li>    
+                                        </ul>
+                                </li>
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Internal Mark</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'all_studnet' %}">Add</a> </li>    
+
+                                            <li><a href="{% url 'internal_details' %}">Details</a> </li>    
+                                        </ul>
+                                </li>
+                                <li class="menu-list"><a href="#"><i class="lnr lnr-book"></i>  <span>eBook</span></a> 
+                                    <ul class="sub-menu-list">
+                                        <li><a href="{% url 'add_ebook' %}">Add Book</a> </li>
+                                        <li><a href="{% url 'ebook_details' %}">Book Details</a></li>
+                                        
+                                    </ul>
+                                </li>
+
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Audio Video</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'addav' %}">Add</a> </li>    
+
+                                            <li><a href="{% url 'av_details' %}">Av Details</a> </li>    
+                                        </ul>
+                                </li>
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Notification</span></a>
+                                        <ul class="sub-menu-list">
+                                            
+
+                                            <li><a href="{% url 'view_notification' %}">View Notification</a> </li>    
+                                        </ul>
+                                </li>
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>View Profile</span></a>
+                                        <ul class="sub-menu-list">
+                                            
+
+                                            <li><a href="{% url 'teacher_profile' %}">View Profile</a> </li>    
+                                        </ul>
+                                </li>
+
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Students</span></a>
+                                        <ul class="sub-menu-list">
+                                            
+
+                                            <li><a href="{% url 'view_student_details' %}">View Students</a> </li>    
+                                        </ul>
+                                </li>
+                                {% endif %}
+
+                                {% if user.student %}
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Preacadamic Details</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'preacadamic' %}">Preacdamic</a> </li>    
+                                            <li><a href="{% url 'preacdamic_view' %}">Preacdamic Details</a> </li>    
+                                        </ul>
+                                </li>
+
+
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Assignments</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'view_assignments' %}">View Assignments</a> </li>    
+                                        </ul>
+                                </li>
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>TimeTable</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'aptablestudent' %}">Time Table</a> </li>    
+                                        </ul>
+                                </li>
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Internal Mark</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'internal_detailsstu' %}">Internal Mark</a> </li>    
+                                            <li><a href="{% url 'attendance_detailsstu' %}">Attendance Mark</a> </li>    
+                                        </ul>
+                                </li>
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Complaint Box</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'complaint' %}">Add Complaint</a> </li>
+                                            <li><a href="{% url 'com_replay_view' %}">Replay View</a></li>
+                                        </ul>
+                                </li>
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Chalan</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'chalan' %}">chalan</a> </li>    
+                                            <li><a href="{% url 'chalanview' %}">Chalan Details</a> </li>    
+                                        </ul>
+                                </li>
+
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Audio Video</span></a>
+                                        <ul class="sub-menu-list">
+                                          
+
+                                            <li><a href="{% url 'av_details' %}">Av Details</a> </li>    
+                                        </ul>
+                                </li>
+
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Library Details</span></a>
+                                        <ul class="sub-menu-list">
+                                          
+
+                                            <li><a href="{% url 'view_library_detail' %}">Library Details</a> </li>    
+                                        </ul>
+                                </li>
+
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Notification</span></a>
+                                        <ul class="sub-menu-list">
+                                            
+
+                                            <li><a href="{% url 'view_notification' %}">View Notification</a> </li>    
+                                        </ul>
+                                </li>
+
+                                <li class="menu-list"><a href="#"><i class="lnr lnr-book"></i>  <span>eBook</span></a> 
+                                    <ul class="sub-menu-list">
+                                        
+                                        <li><a href="{% url 'ebook_details' %}">Book Details</a></li>
+                                        
+                                    </ul>
+                                </li>
+
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Details</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'student_details' %}">Student Details</a> </li>    
+                                            
+                                        </ul>
+                                </li>
+
+                                {% endif %}
+
+                                
+                                {% if user.nonteaching_staff %}
+                                <li class="menu-list"><a href="#"><i class="lnr lnr-book"></i>  <span>eBook</span></a> 
+                                    <ul class="sub-menu-list">
+                                        <li><a href="{% url 'add_ebook' %}">Add Book</a> </li>
+                                        <li><a href="{% url 'ebook_details' %}">Book Details</a></li>
+                                        
+                                    </ul>
+                                </li>
+                                <li class="menu-list"><a href="#"><i class="lnr lnr-book"></i>  <span>Student Book</span></a> 
+                                    <ul class="sub-menu-list">
+                                        <li><a href="{% url 'studentbook' %}">Add Book</a> </li>
+                                        <li><a href="{% url 'book_details' %}">Book Details</a></li>
+                                        
+                                    </ul>
+                                </li>
+                                <li class="menu-list"><a href="#"><i class="lnr lnr-book"></i>  <span>Profile</span></a> 
+                                    <ul class="sub-menu-list">
+                                        <li><a href="{% url 'staff_profile' %}">View Profile</a> </li>
+                                     
+                                        
+                                    </ul>
+                                </li>
+                                {% endif %}
+
+
+                                {% if user.parent %}
+
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Notification</span></a>
+                                        <ul class="sub-menu-list">
+                                            
+
+                                            <li><a href="{% url 'view_notification' %}">View Notification</a> </li>    
+                                        </ul>
+                                </li>
+
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Internal Mark</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'internal_detailsstu' %}">Internal Mark</a> </li>    
+                                            <li><a href="{% url 'attendance_detailsstu' %}">Attendance Mark</a> </li>    
+                                        </ul>
+                                </li>
+
+                                <li class="menu-list">
+                                    <a href="#"><i class="lnr lnr-menu"></i>
+                                        <span>Details</span></a>
+                                        <ul class="sub-menu-list">
+                                            <li><a href="{% url 'student_details' %}">Student Details</a> </li>    
+                                            <li><a href="{% url 'parent_details' %}">Parent Details</a> </li>    
+                                        </ul>
+                                </li>
+
+
+
+                                
+
+
+
+                                {% endif %}
+
+                            </ul>
+                        <!--sidebar nav end-->
+                    </div>
+                </div>
+</body>
+</html>

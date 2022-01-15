@@ -1,0 +1,66 @@
+{% extends 'dashboard/index.html' %}
+{% block content %}
+<br>
+			<div id="page-wrapper">
+				<div class="graphs">
+					<h3 class="blank1">Chalan Table</h3>
+					
+					 <div class="xs tabls">
+						<div class="bs-example4" data-example-id="contextual-table">
+						<table class="table">
+						  <thead>
+							<tr>
+							  <th>#</th>
+							  
+							 
+							  <th>Chalan No</th>
+							  <th>User</th>
+							  <th>Purpose</th>
+							  <th>Student Name</th>
+							  <th>Register No</th>
+							  <th>Address</th>
+							  <th>Dob</th>
+							  <th>Mobile No</th>
+                              <th>Email</th>
+							  <th>Amount</th>
+							 
+							 
+							 
+							</tr>
+						  </thead>
+						  <tbody>
+							
+                            {% for list in chalans %}
+							<tr class="active">
+							<td class="serial">{{ forloop.counter }}</td> 
+							
+							  <td>{{list.chalan_no}}</td>
+							  <td>{{list.user}}</td>
+							  <td>{{list.purpose_of_this_chalan}}</td>
+							  <td>{{list.student_name}}</td>
+                              
+							  <td>{{list.register_no}}</td>
+							  <td>{{list.address}}</td>
+							  <td>{{list.dob}}</td>
+							  <td>{{list.mobile_no}}</td>
+                                
+							  <td>{{list.email}}</td>
+							  <td>{{list.amount}}</td>
+							  
+                               
+							</tr>
+                            {% endfor %}
+							
+						  </tbody>
+						</table>
+					   </div>
+					   
+						</div><!-- /.table-responsive -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		{% endblock %}

@@ -1,0 +1,83 @@
+{% load crispy_forms_tags %}
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Product Create</title>
+
+<!--//Metis Menu -->
+</head> 
+<body class="cbp-spmenu-push">
+	<div class="main-content">
+		<!--left-fixed -navigation-->
+	{% include 'dashboard/header.html' %}
+		<!-- //header-ends -->
+		{% include 'dashboard/left.html' %}
+		<!-- main content start-->
+		<div id="page-wrapper">
+			<div class="main-page">
+				<div class="forms">
+					<h3 class="title1"></h3>
+					
+				
+					<h4>Sale Table </h4>
+						<div>{% if messages %} {% for mess in messages %}
+							<b style="color: brown;">{{mess}}</b> {% endfor %} {% endif %}</div>
+					</div>
+						<table class="table">
+							<thead>
+								<tr>
+					
+								  <th>Customer Name</th>
+								  <th>Amount</th>
+								  <th>Payment ID</th>
+                                  <th>Order ID</th>
+                                  <th>Total Amount </th>
+                                  <th>Date</th>
+                                  <th>All Total</th>
+                                  <th>Paid Or Not</th>
+            
+								</tr>
+							</thead>
+							{% for l in payall %}
+							<tbody>
+								<tr>
+						
+								  <td>{{l.user}}</td>
+								  <td>{{l.amount}}</td>
+                                  <td>{{l.payment_id}}</td>
+                                  <td>{{l.order_id}}</td>
+                                  <td>{{l.total_amount}}</td>
+                                  <td>{{l.date}}</td>
+                                  <td>{{l.all_total}}</td>
+								  {% if l.is_paid == True %}
+                                  <td>Paid</td>
+								  {% else %}
+								  <td>Not Paid</td>
+								  {% endif %}
+                                  
+								</tr>
+								
+							</tbody>
+							{% endfor %}
+						</table>
+					</div>
+					</div>
+	
+				</div>
+	
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+	</body>
+</html>
+		<!--footer-->

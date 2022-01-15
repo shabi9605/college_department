@@ -1,0 +1,127 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+		<!-- main content start-->
+		<div class="main-content">
+			<!-- header-starts -->
+			<div class="header-section">
+			 
+			<!--toggle button start-->
+			<a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>
+			<!--toggle button end-->
+
+			<!--notification menu start -->
+			<div class="menu-right">
+				<div class="user-panel-top">  	
+					<div class="profile_details_left">
+						<ul class="nofitications-dropdown">
+							
+							<li class="login_box" id="loginContainer">
+									<div class="search-box">
+										<div id="sb-search" class="sb-search">
+											<form action="{% url 'search_student' %}" method="get">
+												{% csrf_token %}
+												<input class="sb-search-input" placeholder="Enter your search term..." type="search"  name="query" id="search">
+												<input class="sb-search-submit" type="submit" value="">
+												<span class="sb-icon-search"> </span>
+											</form>
+										</div>
+									</div>
+										<!-- search-scripts -->
+										<script src="/static/dashboard/js/classie.js"></script>
+										<script src="/static/dashboard/js/uisearch.js"></script>
+											<script>
+												new UISearch( document.getElementById( 'sb-search' ) );
+											</script>
+										<!-- //search-scripts -->
+							</li>
+								
+							<div class="clearfix"></div>	
+						</ul>
+					</div>
+
+					<div class="profile_details">		
+						<ul>
+							<li class="dropdown profile_details_drop">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+									<div class="profile_img">	
+										{% if user.is_superuser %}
+										<span style="background:url(/static/dashboard/images/1.jpg) no-repeat center"> </span> 
+										 <div class="user-name">
+											<p>{{user.username}}<span>Administrator</span></p>
+											 
+											{% elif user.student %}
+											<span style="background:url({{user.student.photo.url}}) no-repeat center"> </span> 
+										 	<div class="user-name">
+											<p>{{user.student.name}}<span>Student</span></p>
+											
+											{% elif user.teacher %}
+											<span style="background:url({{user.teacher.photo.url}}) no-repeat center"> </span> 
+										 	<div class="user-name">
+											<p>{{user.teacher.name}}<span>Teacher</span></p>
+										
+											{% elif user.nonteaching_staff %}
+											<span style="background:url({{user.nonteaching_staff.photo.url}}) no-repeat center"> </span> 
+										 	<div class="user-name">
+											<p>{{user.staff.name}}<span>Staff</span></p>
+											{% elif user.parent %}
+
+											<span style="background:url({{user.nonteaching_staff.photo.url}}) no-repeat center"> </span> 
+										 	<div class="user-name">
+											<p>{{user.staff.name}}<span>Parent</span></p>
+											{% endif %}
+
+										 </div>
+										 <i class="lnr lnr-chevron-down"></i>
+										 <i class="lnr lnr-chevron-up"></i>
+										<div class="clearfix"></div>	
+									</div>	
+								</a>
+								<ul class="dropdown-menu drp-mnu">
+									{% if user.is_superuser %}
+									<li> <a href="{% url 'signout' %}"><i class="fa fa-sign-out"></i> Logout</a> </li>
+									{% elif user.student %}
+									<li> <a href="{% url 'change_password' %}"><i class="fa fa-cog"></i> Settings</a> </li> 
+									<li> <a href="{% url 'update_student_profile' %}"><i class="fa fa-user"></i>Profile</a> </li> 
+									<li> <a href="{% url 'signout' %}"><i class="fa fa-sign-out"></i> Logout</a> </li>
+									{% elif user.teacher %}
+									<li> <a href="{% url 'change_password' %}"><i class="fa fa-cog"></i> Settings</a> </li> 
+									<li> <a href="{% url 'update_teacher_profile' %}"><i class="fa fa-user"></i>Profile</a> </li> 
+									<li> <a href="{% url 'signout' %}"><i class="fa fa-sign-out"></i> Logout</a> </li>
+								
+									{% else %}
+									<li> <a href="{% url 'change_password' %}"><i class="fa fa-cog"></i> Settings</a> </li> 
+									<li> <a href="{% url 'update_staff_profile' %}"><i class="fa fa-user"></i>Profile</a> </li> 
+									<li> <a href="{% url 'signout' %}"><i class="fa fa-sign-out"></i> Logout</a> </li>
+									{% endif %}
+								</ul>
+							</li>
+							<div class="clearfix"> </div>
+						</ul>
+					</div>		
+					<div class="social_icons">
+						{% for msg in messages %}{{msg}}{% endfor %}
+						<!-- <div class="col-md-4 social_icons-left">
+							<a href="#" class="yui"><i class="fa fa-facebook i1"></i><span>300<sup>+</sup> Likes</span></a>
+						</div>
+						<div class="col-md-4 social_icons-left pinterest">
+							<a href="#"><i class="fa fa-google-plus i1"></i><span>500<sup>+</sup> Shares</span></a>
+						</div>
+						<div class="col-md-4 social_icons-left twi">
+							<a href="#"><i class="fa fa-twitter i1"></i><span>500<sup>+</sup> Tweets</span></a>
+						</div> -->
+						<div class="clearfix"> </div>
+					</div>            	
+					<div class="clearfix"></div>
+				</div>
+			  </div>
+			<!--notification menu end -->
+			</div>
+</body>
+</html>

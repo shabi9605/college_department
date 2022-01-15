@@ -1,0 +1,72 @@
+{% extends 'dashboard/index.html' %}
+{% block content %}
+<br>
+			<div id="page-wrapper">
+				<div class="graphs">
+					<h3 class="blank1">Data Table</h3>
+					 <div class="xs tabls">
+						<div class="bs-example4" data-example-id="contextual-table">
+						<table class="table">
+						  <thead>
+							<tr> 
+                                <th>Student Name</th>
+                                <th>Admission Number</th>
+                                <th>SSLC School</th>
+                                <th>SSLC %</th>
+                                <th>SSLC Passout Year</th>
+                                <th>HSS School</th>
+                                <th>HSS %</th>
+                                <th>HSS Passout Year</th>
+                                <th>College Name</th>
+                                <th>Course</th>
+                                <th>College Passout Year</th>
+                                <th>year gap</th>
+                                <th>Institution Name</th>
+                                <th>Appruval Status</th>
+                                {% if user.teacher == 'HOD' %}
+                                <th>Approve</th>
+                                {% endif %}
+							</tr>
+						  </thead>
+						  <tbody>
+               
+							 
+                            {% for value in pre %}
+							            <tr class="active">
+                                <td>{{value.student.name}}</td>
+                                <td>{{value.student.admission_no}}</td>
+                                <td>{{value.sslc_school_name}}</td>
+                                <td>{{value.sslc_Persentage}}</td>
+                                <td>{{value.sslc_passout_year}}</td>
+                                <td>{{value.higher_secondary_school_name}}</td>
+                                <td>{{value.hss_persentage}}</td>
+                                <td>{{value.hss_passout_year}}</td>
+
+                                <td>{{value.college_name}}</td>
+                                <td>{{value.course_name}}</td>
+                                <td>{{value.college_passout_year}}</td>
+                                <td>{{value.year_gap}}</td>
+                                <td>{{value.institution_last_studied}}</td>
+                                {% if value.approve == True %}
+                                <td>Appruved</td>
+                                {% else %}
+                                <td>Not Appruved Yet</td>
+                                {% endif %}
+                                
+                               
+							            </tr>
+                            {% endfor %}
+							
+						  </tbody>
+						</table>
+					   </div>
+					   
+						</div><!-- /.table-responsive -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		{% endblock %}

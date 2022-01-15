@@ -1,0 +1,73 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    .form 
+    {
+        background-color: #FACC5F;
+         padding: 10px;
+    }
+    input[type=text]
+    {
+        width: 100%;
+        padding: 7px 10px;
+        margin: 6px 0;
+        display: inline-block;
+        border: 1px solid black;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-Weight: 100;
+        font-size: 15px;
+    }
+    form label
+    {
+        font-Weight: 800;
+        font-size: 20px;
+    }
+    input[type=submit] 
+    {
+        width: 120px;
+        margin: 0 auto;
+        background-color:grey;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+    }
+    .submit
+    {
+        text-align:center;
+    }
+</style>
+
+ <div class="form">
+    {% for ms in messages %}{{ms}}{% endfor %}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+{{form|crispy}}
+<input type="submit" value="submit">
+</form>
+
+
+<!-- <div class="form" style="width: 32em; margin-left: 33em; height: 12em;"> -->
+    <h1>Pay NoW</h1><br>
+<table border="1" style="color:red;margin-left: 3em; border: white; width: 20em; height: 2em;">
+    <tr>
+        <th>Name</th>
+        <th>course_name</th>
+        <th>Payment</th>
+    </tr>
+    {% if f %}
+    {% for i in f %}
+    <tr>
+        <td>{{i.name}}</td>
+        <td>{{i.course_name}}</td>
+        <td><a href="{% url 'payment:payment' i.id %}">PayNow</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h3>Fill The Form</h3>
+{% endif %}
+</div>
+{% endblock %}

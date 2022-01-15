@@ -1,0 +1,96 @@
+{% extends 'dashboard/index.html' %}
+{% block content %}
+<br>
+<div id="page-wrapper" >
+	<div class="graphs">
+		<div class="col_3">
+			{% for i in b %}
+			<div class="col-md-3 widget widget1">
+				<div class="r3_counter_box">
+					<i class="fa fa-mail-forward"></i>
+					<div class="stats">
+					  <h5><span></span></h5>
+					  <div class="grow">
+						<a href="{% url 'course_view' i.id %}"><p>{{i.course_name}}</p></a>
+					  </div>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+			
+			<div class="clearfix"> </div>
+		</div>
+			<div id="page-wrapper">
+				<div class="graphs">
+					<h3 class="blank1">Internal Table</h3>
+					<div style="columns: 2;">
+					<form action="{% url 'search_internal' %}" method="get" style="margin:3em; max-width:800px">
+						{% csrf_token %}
+						<input type="search" placeholder="Enter name or admission no " name="query" id='search-text-input' style="width: 23em;">
+						<button sty><i class="fa fa-search" aria-hidden="true"></i></button>
+					</form>	
+					
+					<form action="{% url 'search_internal_sem' %}" method="get" style="margin:3em; max-width:800px">
+						{% csrf_token %}
+						<br><h4 style="margin-bottom: 1.4em;">Semster Serach</h4>
+						
+						<select name="query"  style="width: 23em;" >
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+
+						</select>
+						<!-- <input type="search" placeholder="Enter name or admission no " name="query" id='search-text-input' style="width: 23em;"> -->
+						<button sty><i class="fa fa-search" aria-hidden="true"></i></button>
+					</form>	
+				</div>
+						<br>
+					 <div class="xs tabls">
+						<div class="bs-example4" data-example-id="contextual-table">
+						<table class="table">
+						  <thead>
+							<tr>
+							  <th>#</th>
+							  <th>Name</th>
+							  <th>Admission No</th>
+							  <th>Register No</th>
+							 
+							  <th>Email</th>
+							  <th>Course</th>
+							  <th>Semester</th>
+							  <th>Add Internal Mark</th>
+							</tr>
+						  </thead>
+						  <tbody>
+							  {% if s %}
+                            {% for list in s %}
+							<tr class="active">
+							  <th scope="row"></th>
+							  <td>{{list.name}}</td>
+							  <td>{{list.admission_no}}</td>
+							  <td>{{list.register_no}}</td>
+							 
+							  <td>{{list.email}}</td>
+							  <td>{{list.course_name}}</td>
+							  <td>{{list.semster}}</td>
+							  <td><a href="{% url 'addinternal' list.id %}">Add Internal</a></td>
+							</tr>
+                            {% endfor %}
+							{% else %}
+							<h3>No data found</h3>
+							{% endif %}
+							
+						  </tbody>
+						</table>
+					   </div>
+					   
+						</div><!-- /.table-responsive -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'dashboard/index.html' %}
+{% block content %}
+<h1>Hi</h1>
+			<div id="page-wrapper">
+				<div class="graphs">
+					<h3 class="blank1">Data Table</h3>
+					 <div class="xs tabls">
+						<div class="bs-example4" data-example-id="contextual-table">
+						<table class="table">
+						  <thead>
+							<tr>
+							  <th>#</th>
+							  <th>Name</th>
+							  <th>Admission No</th>
+							  <th>Semester</th>
+							  <th>Course</th>
+							  <th>subject</th>
+
+							  <!-- <th>test1_mark</th>
+							  <th>test2_mark</th>
+							  <th>seminar mark</th>
+							  <th>attendence</th>
+							  <th>attendence mark</th>
+							  <th>no.working days</th> -->
+							
+							  <th>total seminar mark</th>
+							  <th>total mark</th>
+							  <th>Fianl Mark</th>
+							  <th>Update</th>
+							  <th>Delete</th>
+							</tr>
+						  </thead>
+						  <tbody>
+							  {% if t %}
+                            {% for list in t %}
+							<tr class="active">
+							  <th scope="row"></th>
+							  <td>{{list.student.name}}</td>
+							  <td>{{list.student.admission_no}}</td>
+							 
+							  <td>{{list.semster}}</td>
+							  <td>{{list.course}}</td>
+							  <td>{{list.subject}}</td>
+
+							  <!-- <td>{{list.test1_mark}}</td>
+							  <td>{{list.test2_mark}}</td>
+							 
+							  <td>{{list.seminar_mark}}</td>
+							  <td>{{list.attendence}}</td>
+							  <td>{{list.attendence_mark}}</td> -->
+								<!-- <td>{{list.no_of_working_days}}</td> -->
+								<td>{{list.total_seminar_mark}}</td>
+								<td>{{list.total_internal_mark}}</td>
+								<td>{{list.final_total_internal_mark}}</td>
+
+								<td><a href="{% url 'update_internal' list.id %}">Update Internal</a></td>
+								<td><a href="{% url 'delete_internal_details' list.id%}" style="color: red;" onclick="return confirm('are u sure d u want to delete this record')">Delete</a></td>
+
+							</tr>
+                            {% endfor %}
+							{% else %}
+							<h3>No data found</h3>
+							{% endif %}
+							
+						  </tbody>
+						</table>
+					   </div>
+					   
+						</div><!-- /.table-responsive -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endblock %}

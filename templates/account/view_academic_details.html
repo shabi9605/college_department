@@ -1,0 +1,114 @@
+{% extends 'dashboard/index.html' %}
+{% block content %}
+<br>
+			<div id="page-wrapper">
+				<div class="graphs">
+					<h3 class="blank1">Pre Academic Table</h3>
+					
+
+                    <div>
+                        <h1>Search</h1>
+                        <form action="" method="GET">
+                            {% csrf_token %}
+                            <input type="text" name="name" placeholder="student name">
+                            <input type="submit" value="search">
+                        </form>
+                      
+                    </div>
+                    <div>
+
+                    </div>
+
+					 <div class="xs tabls">
+						<div class="bs-example4" data-example-id="contextual-table">
+						<table class="table">
+						  <thead>
+							<tr>
+							  <th>#</th>
+							  
+							 
+							  <th>Student</th>
+							  <th>SSLC School Name</th>
+							  <th>SSLC Percentage</th>
+							  <th>SSLC Passout Year</th>
+							  <th>HSS School Name</th>
+							  <th>HSS Percentage</th>
+							  <th>HSS Passout Year</th>
+							  <th>Last Studied Institution</th>
+                              <th>Approval</th>
+							 
+							 
+							 
+							 
+							</tr>
+						  </thead>
+						  <tbody>
+                              {% if student %}
+
+
+                              {% for list in student %}
+							<tr class="active">
+							<td class="serial">{{ forloop.counter }}</td> 
+							
+							  <td>{{list.student.name}}</td>
+							  <td>{{list.sslc_school_name}}</td>
+							  <td>{{list.sslc_Persentage}}</td>
+							  <td>{{list.sslc_passout_year}}</td>
+                              
+							  <td>{{list.higher_secondary_school_name}}</td>
+							  <td>{{list.hss_persentage}}</td>
+							  <td>{{list.hss_passout_year}}</td>
+							  <td>{{list.institution_last_studied}}</td>
+                              {% if list.approve == True %}
+                                
+							  <td>Approved</td>
+                              {% else %}
+                              <td>Not Approved</td>
+                              {% endif %}
+							  
+							  
+                               
+							</tr>
+                            {% endfor %}
+
+                              {% else %}
+							
+                            {% for list in pre_academic_details %}
+							<tr class="active">
+							<td class="serial">{{ forloop.counter }}</td> 
+							
+							  <td>{{list.student.name}}</td>
+							  <td>{{list.sslc_school_name}}</td>
+							  <td>{{list.sslc_Persentage}}</td>
+							  <td>{{list.sslc_passout_year}}</td>
+                              
+							  <td>{{list.higher_secondary_school_name}}</td>
+							  <td>{{list.hss_persentage}}</td>
+							  <td>{{list.hss_passout_year}}</td>
+							  <td>{{list.institution_last_studied}}</td>
+                              {% if list.approve == True %}
+                                
+							  <td>Approved</td>
+                              {% else %}
+                              <td>Not Approved</td>
+                              {% endif %}
+							  
+							  
+                               
+							</tr>
+                            {% endfor %}
+                            {% endif %}
+							
+						  </tbody>
+						</table>
+					   </div>
+					   
+						</div><!-- /.table-responsive -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		{% endblock %}

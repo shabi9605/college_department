@@ -1,0 +1,71 @@
+{% extends 'dashboard/index.html' %}
+{% block content %}
+<br>
+			<div id="page-wrapper">
+				<div class="graphs">
+					<h3 class="blank1">Data Table</h3>
+					
+					 <div class="xs tabls">
+						<div class="bs-example4" data-example-id="contextual-table">
+						<table class="table">
+						  <thead>
+							<tr>
+							  <th>#</th>
+							  
+							  <th>title</th>
+							  <th>subject</th>
+							  <th>description</th>
+							  <th>audio</th>
+							  <th>video</th>
+							  <th>link</th>
+							  <th>Created date</th>
+
+							  {% if user.teacher.job_type == 'HOD' %}
+							 
+							  <th>Update</th>
+							  <th>Delete</th>
+							  {% elif user.teacher.job_type == 'teacher' %}
+							  <th>Update</th>
+							  <th>Delete</th>
+							  {% endif %}
+							 
+							</tr>
+						  </thead>
+						  <tbody>
+							
+                            {% for list in t %}
+							<tr class="active">
+							<td class="serial">{{ forloop.counter }}</td> 
+							
+							  <td>{{list.title}}</td>
+							  <td>{{list.subject}}</td>
+							  <td>{{list.description}}</td>
+							  <td><a href="{{list.audio.url}}">{{list.audio}}</a></td>
+                              
+							  <td><a href="{{list.video.url}}">{{list.video}}</a></td>
+							  <td>{{list.link}}</td>>
+							  <td>{{list.created_date}}</td>
+							  {% if user.teacher.job_type == 'HOD' %}
+							 
+							  <td><a href="{% url 'update_av' list.id %}" style="color: red;">Update Details</a></td>
+                               <td><a href="{% url 'delete_av_details' list.id%}" style="color: red;" onclick="return confirm('are u sure d u want to delete this record')">Delete</a></td>
+							   {% elif user.teacher.job_type == 'teacher' %}
+							   <td><a href="{% url 'update_av' list.id %}" style="color: red;">Update Details</a></td>
+                               <td><a href="{% url 'delete_av_details' list.id%}" style="color: red;" onclick="return confirm('are u sure d u want to delete this record')">Delete</a></td>
+							   {% endif %}
+							</tr>
+                            {% endfor %}
+							
+						  </tbody>
+						</table>
+					   </div>
+					   
+						</div><!-- /.table-responsive -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		{% endblock %}

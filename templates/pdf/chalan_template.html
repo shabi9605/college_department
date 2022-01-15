@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Django PDF</title>
+    <style>
+        th, td{
+            padding: 5px 15px;
+        }
+        th{
+            font-size: 20px;
+            font-weight: bold;
+        }
+        td{
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;" >Chalan Details</h1>
+
+    <table  style="border-collapse: collapse;" >
+        <thead>
+            <tr>
+                <td>Chalan Number</td>
+                <td>Student ad.No</td>
+                <td>Name</td>
+                <td>email</td>
+                <td>Register No</td>
+                <td>Amount</td>
+                <td>Purpose</td>
+                <td>Date</td>
+                <!-- <td>State Name</td> -->
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for value in states %}
+                <tr>
+                    <td>{{value.chalan_no}}</td>
+                    <h4>Note this number for future Purpose</h4>
+                    <td>{{value.user}}</td>
+                    <td>{{value.student_name}}</td>
+                    <td>{{value.email}}</td>
+                    <td>{{value.register_no}}</td>
+                    <td>{{value.amount}}</td>
+                    <td>{{value.purpose_of_this_chalan}}</td>
+                    <td>{{value.created_date}}</td>
+                   
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>            
+</body>
+</html>

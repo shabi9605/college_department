@@ -1,0 +1,72 @@
+{% extends 'dashboard/index.html' %}
+{% block content %}
+<br>
+			<div id="page-wrapper">
+				<div class="graphs">
+					<h3 class="blank1">Data Table</h3>
+					
+					 <div class="xs tabls">
+						<div class="bs-example4" data-example-id="contextual-table">
+						<table class="table">
+						  <thead>
+							<tr>
+							  <th>#</th>
+							  
+							 
+							  <th>title</th>
+							  <th>day</th>
+							  <th>course</th>
+							  <th>Semester</th>
+							  <th>Subject 1</th>
+							  <th>Subject 2</th>
+							  <th>Subject 3</th>
+							  <th>Subject 4</th>
+                              <th>Subject 5</th>
+							  <th>Subject 6</th>
+							  <th>Appruval status</th>
+							  <th>Update</th>
+							  <th>Delete</th>
+							 
+							</tr>
+						  </thead>
+						  <tbody>
+							
+                            {% for list in t %}
+							<tr class="active">
+							<td class="serial">{{ forloop.counter }}</td> 
+							
+							  <td>{{list.title}}</td>
+							  <td>{{list.day}}</td>
+							  <td>{{list.course}}</td>
+							  <td>{{list.semster}}</td>
+                              
+							  <td>{{list.subject1}}</td>
+							  <td>{{list.subject2}}</td>
+							  <td>{{list.subject3}}</td>
+							  <td>{{list.subject4}}</td>
+                                
+							  <td>{{list.subject5}}</td>
+							  <td>{{list.subject6}}</td>
+                                {% if list.appruve == True %}
+                                <td>Appruved</td>
+                                {% else %}
+                                <td>Not Appruved</td>
+                                {% endif %}
+							  <td><a href="{% url 'update_table' list.id %}" style="color: red;">Update Details</a></td>
+                               <td><a href="{% url 'delete_table_details' list.id%}" style="color: red;" onclick="return confirm('are u sure d u want to delete this record')">Delete</a></td>
+							</tr>
+                            {% endfor %}
+							
+						  </tbody>
+						</table>
+					   </div>
+					   
+						</div><!-- /.table-responsive -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		{% endblock %}

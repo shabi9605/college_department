@@ -1,0 +1,50 @@
+{% extends 'dashboard/index.html' %}
+{% block content %}
+<br>
+			<div id="page-wrapper">
+				<div class="graphs">
+					<h3 class="blank1">Data Table</h3>
+					 <div class="xs tabls">
+						<div class="bs-example4" data-example-id="contextual-table">
+						<table class="table">
+						  <thead>
+							<tr>
+							  <th>#</th>
+							  <th>Student Name</th>
+							  <th>Admission Number</th>
+							  <th>Complaint</th>
+							  <th>Replay</th>
+							  <th>Created date</th>
+							  <th>Replay date</th>
+							  
+							  
+							</tr>
+						  </thead>
+						  <tbody>
+						
+                            {% for list in com %}
+							<tr class="active">
+							<td class="serial">{{ forloop.counter }}</td> 
+							
+							  <td>{{list.student.name}}</td>
+							  <td>{{list.student}}</td>
+                              <td>{{list.complaint}}</td>
+                               <td>{{list.replay}}</td>
+							  <td>{{list.created_date}}</td>
+							  <td>{{list.replay_date}}</td>
+							</tr>
+                            {% endfor %}
+							
+						  </tbody>
+						</table>
+					   </div>
+					   
+						</div><!-- /.table-responsive -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		{% endblock %}

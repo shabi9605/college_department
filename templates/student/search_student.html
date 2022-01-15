@@ -1,0 +1,55 @@
+{% extends 'dashboard/index.html' %}
+{% block content %}
+			<div id="page-wrapper">
+				<div class="graphs">
+					<h3 class="blank1">Data Table</h3>
+					 <div class="xs tabls">
+						<div class="bs-example4" data-example-id="contextual-table">
+						<table class="table">
+						  <thead>
+							<tr>
+							  <th>#</th>
+							  <th>Name</th>
+							  <th>Admission No</th>
+							  <th>Register No</th>
+							 
+							  <th>Email</th>
+							  <th>Course</th>
+							  <th>Semester</th>
+							  <!-- <th>Add Internal Mark</th>
+							  <th>Add Assignment</th> -->
+							</tr>
+						  </thead>
+						  <tbody>
+							  {% if s %}
+                            {% for list in s %}
+							<tr class="active">
+							  <th scope="row"></th>
+							  <td>{{list.name}}</td>
+							  <td>{{list.admission_no}}</td>
+							  <td>{{list.register_no}}</td>
+							 
+							  <td>{{list.email}}</td>
+							  <td>{{list.course_name}}</td>
+							  <td>{{list.semster}}</td>
+							  <!-- {% if user.teacher %}
+							  <td><a href="{% url 'addinternal' list.id %}">Add Internal</a></td>
+							  <td><a href="{% url 'addassignments' list.id %}">Add Assignment</a></td>
+							{% endif %} -->
+							</tr>
+                            {% endfor %}
+							{% else %}
+							<h3>No data found</h3>
+							{% endif %}
+							
+						  </tbody>
+						</table>
+					   </div>
+					   
+						</div><!-- /.table-responsive -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endblock %}

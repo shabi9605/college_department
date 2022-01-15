@@ -1,0 +1,55 @@
+{% extends 'dashboard/index.html' %}
+{% block content %}
+
+
+<div class="xs tabls">
+    <div class="bs-example4" data-example-id="contextual-table">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Teacher ID</th>
+         
+          <th>DOB</th>
+          <th>GENDER</th>
+          <th>Mobile No</th>
+          <th>Designation</th>
+          <th>Qualification</th>
+          <th>Experience</th>
+          <th>Confirm</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% if all_teachers  %}
+        {% for list in all_teachers %}
+        <tr class="active">
+          <th scope="row"></th>
+          <td>{{list.name}}</td>
+          <td>{{list.email}}</td>
+          <td>{{list.teacher_id}}</td>
+         
+          <td>{{list.dob}}</td>
+          <td>{{list.gender}}</td>
+          <td>{{list.mobile_no}}</td>
+          <td>{{list.designation}}</td>
+          <td>{{list.qualification}}</td>
+          <td>{{list.year_of_experience}}</td>
+
+          <td><a href="{% url 'confirm_teacher' list.id %}">Confirm Teacher</a></td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <h3>No data found</h3>
+        {% endif %}
+        
+      </tbody>
+    </table>
+   </div>
+   
+    </div><!-- /.table-responsive -->
+    
+
+
+{% endblock %}

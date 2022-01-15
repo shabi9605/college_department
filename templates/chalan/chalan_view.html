@@ -1,0 +1,50 @@
+{% extends 'dashboard/index.html' %}
+{% block content %}
+<br>
+			<div id="page-wrapper">
+				<div class="graphs">
+					<h3 class="blank1">Data Table</h3>
+					 <div class="xs tabls">
+						<div class="bs-example4" data-example-id="contextual-table">
+						<table class="table">
+						  <thead>
+							<tr> 
+                                <td>Chalan Number</td>
+                                <td>Name</td>
+                                <td>email</td>
+                                <td>Register No</td>
+                                <td>Amount</td>
+                                <td>Purpose</td>
+                                <td>Date</td>
+								<td>Genarate</td>
+							</tr>
+						  </thead>
+						  <tbody>
+							 
+                            {% for value in c %}
+							<tr class="active">
+                                <td>{{value.chalan_no}}</td>
+                                <h4>Note this number for future Purpose</h4>
+                                <td>{{value.student_name}}</td>
+                                <td>{{value.email}}</td>
+                                <td>{{value.register_no}}</td>
+                                <td>{{value.amount}}</td>
+                                <td>{{value.purpose_of_this_chalan}}</td>
+                                <td>{{value.created_date}}</td>
+								<td><button><a href="{% url 'report' %}">Generate</a></button></td>
+							</tr>
+                            {% endfor %}
+							
+						  </tbody>
+						</table>
+					   </div>
+					   
+						</div><!-- /.table-responsive -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		{% endblock %}

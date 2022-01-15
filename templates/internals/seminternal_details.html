@@ -1,0 +1,93 @@
+{% extends 'dashboard/index.html' %}
+{% block content %}
+<!-- <div id="page-wrapper" > -->
+    <br>
+	<div class="graphs" >
+		<div class="col_3" style="margin-left: 3em;">
+			{% for i in b %}
+			<div class="col-md-3 widget widget1">
+				<div class="r3_counter_box">
+					<i class="fa fa-mail-forward"></i>
+					<div class="stats">
+					  <h5><span></span></h5>
+					  <div class="grow">
+						<a href="{% url 'course_view' i.id %}"><p>{{i.title}}</p></a>
+					  </div>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+			
+			<div class="clearfix"> </div>
+		</div>
+
+			<div id="page-wrapper">
+				<div class="graphs">
+					<h3 class="blank1">Data Table</h3>
+					 <div class="xs tabls">
+						<div class="bs-example4" data-example-id="contextual-table" >
+						<table class="table" >
+						  <thead>
+							<tr>
+						
+							  <th>Name</th>
+							  <th>Admission No</th>
+							  <th>Semester</th>
+							  <th>Course</th>
+							  <th>subject</th>
+
+							  <th>test1</th>
+							  <th>test2</th>
+							  <th>seminar mark</th>
+							  <th>attendence</th>
+							  <th>attendence mark</th>
+							  <th>no.working days</th>
+							
+							  <th>total seminar mark</th>
+							  <th>total mark</th>
+							  <th>Fianl Mark</th>
+							
+							</tr>
+						  </thead>
+						  <tbody>
+							  {% if t %}
+                            {% for list in t %}
+							<tr class="active">
+					
+							  <td>{{list.student.name}}</td>
+							  <td>{{list.student.admission_no}}</td>
+							 
+							  <td>{{list.semster}}</td>
+							  <td>{{list.course}}</td>
+							  <td>{{list.subject}}</td>
+
+							  <td>{{list.test1_mark}}</td>
+							  <td>{{list.test2_mark}}</td>
+							 
+							  <td>{{list.seminar_mark}}</td>
+							  <td>{{list.attendence}}</td>
+							  <td>{{list.attendence_mark}}</td> 
+								<td>{{list.no_of_working_days}}</td>
+								<td>{{list.total_seminar_mark}}</td>
+								<td>{{list.total_internal_mark}}</td>
+								<td>{{list.final_total_internal_mark}}</td>
+
+								
+
+							</tr>
+                            {% endfor %}
+							{% else %}
+							<h3>No data found</h3>
+							{% endif %}
+							
+						  </tbody>
+						</table>
+					   </div>
+					   
+						</div><!-- /.table-responsive -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endblock %}

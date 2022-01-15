@@ -1,0 +1,55 @@
+{% extends 'dashboard/index.html' %}
+{% block content %}
+
+
+<div class="xs tabls">
+    <div class="bs-example4" data-example-id="contextual-table">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Course Name</th>
+          <th>Description</th>
+          <th>Course Prefix</th>
+         
+          <th>Duration</th>
+          <th>NO.OF Semesters</th>
+          <th>Admission Fee</th>
+          <th>Tuition Fee</th>
+          <th>Library Fee</th>
+         
+          <th>Manage</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% if all_course  %}
+        {% for list in all_course %}
+        <tr class="active">
+          <th scope="row"></th>
+          <td>{{list.course_name}}</td>
+          <td>{{list.description}}</td>
+          <td>{{list.course_prefix}}</td>
+         
+          <td>{{list.duration}}</td>
+          <td>{{list.no_of_semsters}}</td>
+          <td>{{list.admission_fee}}</td>
+          <td>{{list.tution_fee}}</td>
+          <td>{{list.library_fee}}</td>
+          
+
+          <td><a href="{% url 'manage_course' list.id %}">Manage Course</a></td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <h3>No data found</h3>
+        {% endif %}
+        
+      </tbody>
+    </table>
+   </div>
+   
+    </div><!-- /.table-responsive -->
+    
+
+
+{% endblock %}
